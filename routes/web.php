@@ -3,31 +3,17 @@
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('home');
+    return view('home', ['title' => 'Home Page']);
 });
 
 Route::get('/about', function () {
-    return view('about', ['nama' => 'Fahmi Nugroho']);
+    return view('about', ['name' => 'Fahmi Nugroho', 'title' => 'Contact']);
 });
 
 Route::get('/blog', function () {
-    return view('blog', ['articles' => [
-        (object) [
-            'title' => 'Artikel Pertama',
-            'text'  => 'Ini adalah artikel yang diubat pertama kali menggunakan laravel 11'
-        ],
-        (object) [
-            'title' => 'Artikel Terakhir',
-            'text'  => 'Ini adalah artikel yang diubat terakhir kali menggunakan laravel 11'
-        ],
-    ]]);
+    return view('blog', ['title' => 'Blog']);
 });
 
 Route::get('/contact', function () {
-    return view('contact', ['contacts' => (object) [
-        'name'     => 'Fahmi Nugroho Alibasyah',
-        'email'     => 'fahminugroho23@gmail.com',
-        'github'    => 'fahmi-nugroho',
-        'linkedin'    => 'Fahmi Nugroho',
-    ]]);
+    return view('contact', ['title' => 'Contact']);
 });
