@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 // NOTE Secara default model Post akan berpasangan dengan tabel posts
 class Post extends Model
@@ -22,4 +23,10 @@ class Post extends Model
 
     // NOTE Untuk menentukan filed apa saja yang tidak boleh diisi manual
     // protected $guarded = [];
+
+    // NOTE user memiliki banyak post
+    public function author(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
 }

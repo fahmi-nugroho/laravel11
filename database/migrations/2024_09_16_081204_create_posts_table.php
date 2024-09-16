@@ -14,7 +14,16 @@ return new class extends Migration
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('author');
+
+            // NOTE Membuat foreign key constraints
+            // $table->unsignedInteger('author_id');
+            // $table->foreign('author_id')->references('id')->on('users');
+
+            // NOTE Membuat foreign key constraint menggunakan index
+            $table->foreignId('author_id')->constrained(
+                table: 'users',
+                indexName: 'posts_author_id'
+            );
             $table->string('slug')->unique();
             $table->text('body');
             // NOTE timestamps akan otomatis menambahkan field created_at dan updated_at
