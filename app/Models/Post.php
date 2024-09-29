@@ -21,6 +21,9 @@ class Post extends Model
     // NOTE Untuk menentukan field apa saja yang boleh diisi manual
     protected $fillable = ['title', 'author', 'slug', 'body'];
 
+    // NOTE Untuk melakukan eager loading secara default
+    protected $with = ['author', 'category'];
+
     // NOTE Untuk menentukan filed apa saja yang tidak boleh diisi manual
     // protected $guarded = [];
 
