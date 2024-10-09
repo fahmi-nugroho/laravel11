@@ -15,10 +15,17 @@ Route::get('/about', function () {
 });
 
 Route::get('/posts', function () {
+    // $posts = Post::with('author')->with('category')->latest();
+
+    // NOTE menangkap input form dengan tipe get (by field name)
+    // if (request('search')) {
+    //     $posts->where('title', 'like', '%' . request('search') . '%');
+    // }
+
     // NOTE get untuk menambahkan beberapa query
     // NOTE with() untuk menggunakan eager loading
     // $posts = Post::with('author')->with('category')->latest()->get();
-    return view('posts', ['title' => 'Blog', 'posts' => Post::with('author')->latest()->get()]);
+    return view('posts', ['title' => 'Blog', 'posts' => Post::filter(request(['search', 'category', 'author']))->latest()->get()]);
 });
 
 // NOTE mengubah yang defaultnya id ke slug
